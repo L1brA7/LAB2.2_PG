@@ -17,7 +17,6 @@ class COMPLEX {
         }
         float module();
         void set();
-        void get();
         COMPLEX operator+(COMPLEX& cn2);
         COMPLEX operator-(COMPLEX& cn2);
         //z=z1⋅z2=(a1a2−b1b2)+(a1b2+b1a2)i
@@ -28,8 +27,8 @@ class COMPLEX {
         friend bool operator!=(COMPLEX& left, COMPLEX& right);
         friend bool operator<=(COMPLEX& left, COMPLEX& right);
         friend bool operator>=(COMPLEX& left, COMPLEX& right);
-        friend istream& operator>>(istream &in, COMPLEX &c);
-        friend ostream& operator<<(ostream &out, COMPLEX &c);
+        friend istream& operator>>(istream &in, COMPLEX &cn);
+        friend ostream& operator<<(ostream &out, COMPLEX &cn);
 };
 
 float COMPLEX::module() {
@@ -42,11 +41,6 @@ void COMPLEX::set() {
     printf("Enter the imaginary part - ");
     cin >> img;
 }
-
-void COMPLEX::get() {
-    printf("(%i, %ii)", real, img);
-}
-
 
 COMPLEX COMPLEX::operator+(COMPLEX& cn2) {
     COMPLEX sum;
@@ -91,4 +85,15 @@ bool operator<=(COMPLEX& left, COMPLEX& right) {
 
 bool operator>=(COMPLEX& left, COMPLEX& right) {
     return left.module() >= right.module();
+}
+
+istream& operator>>(istream& in, COMPLEX& cn) {
+    in >> cn.real;
+    in >> cn.img;
+    return in;
+}
+
+ostream& operator<<(ostream& out, COMPLEX& cn) {
+    out << "(" << cn.real << " + " << cn.img << "i)";
+    return out;
 }
