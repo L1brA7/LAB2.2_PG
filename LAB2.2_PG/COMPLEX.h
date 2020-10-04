@@ -3,7 +3,8 @@
 using namespace std;
 
 class COMPLEX {
-    int real, img;
+    private:
+        int real, img;
     public:
         COMPLEX() {
             real = 0; img = 0;
@@ -16,7 +17,10 @@ class COMPLEX {
             img = SAMPLE.img;
         }
         float module();
-        void set();
+        void set_re();
+        void set_im();
+        int get_re();
+        int get_im();
         COMPLEX operator+(COMPLEX& cn2);
         COMPLEX operator-(COMPLEX& cn2);
         //z=z1⋅z2=(a1a2−b1b2)+(a1b2+b1a2)i
@@ -35,11 +39,22 @@ float COMPLEX::module() {
     return sqrt(real * real + img * img);
 }
 
-void COMPLEX::set() {
+void COMPLEX::set_re() {
     printf("Enter the real part - ");
     cin >> real;
+}
+
+void COMPLEX::set_im() {
     printf("Enter the imaginary part - ");
     cin >> img;
+}
+
+int COMPLEX::get_re() {
+    return real;
+}
+
+int COMPLEX::get_im() {
+    return img;
 }
 
 COMPLEX COMPLEX::operator+(COMPLEX& cn2) {
