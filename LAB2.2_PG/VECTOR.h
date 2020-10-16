@@ -39,10 +39,10 @@ class VECTOR {
         float operator*(VECTOR& V2);
         VECTOR& operator*(float D);
         float operator^(VECTOR& V2);
-        friend bool operator>(VECTOR& left, VECTOR& right);
-        friend bool operator<(VECTOR& left, VECTOR& right);
-        friend bool operator==(VECTOR& left, VECTOR& right);
-        friend bool operator!=(VECTOR& left, VECTOR& right);
+        bool operator>(VECTOR& right);
+        bool operator<(VECTOR& right);
+        bool operator==(VECTOR& right);
+        bool operator!=(VECTOR& right);
         friend istream& operator>>(istream& in, VECTOR& vector);
         friend ostream& operator<<(ostream &out, VECTOR &vector);
 };
@@ -115,7 +115,7 @@ float VECTOR::operator*(VECTOR& V2) {
     for (int i = 0; i < leng; i++) {
         sum += vec[i] * V2.vec[i];
     }
-    return module() * V2.module() * cos((sum / (module() * V2.module())));
+    return sum;
 }
 
 VECTOR& VECTOR::operator*(float D) {
@@ -128,27 +128,28 @@ VECTOR& VECTOR::operator*(float D) {
 }
 
 float VECTOR::operator^(VECTOR& V2) {
+    
     float sum = 0;
     for (int i = 0; i < leng; i++) {
         sum += vec[i] * V2.vec[i];
     }
-    return acos(sum / (module() * V2.module()));
+    return acos(sum / (module() * V2.module())) * 180.0 / 3.14;
 }
 
-bool operator>(VECTOR& left, VECTOR& right) {
-    return (left.module() > right.module());
+bool VECTOR::operator>(VECTOR& right) {
+    return module() > right.module();
 }
 
-bool operator<(VECTOR& left, VECTOR& right) {
-    return (left.module() < right.module());
+bool VECTOR::operator<(VECTOR& right) {
+    return module() < right.module();
 }
 
-bool operator==(VECTOR& left, VECTOR& right) {
-    return (left.module() == right.module());
+bool VECTOR::operator==(VECTOR& right) {
+    return module() == right.module();
 }
 
-bool operator!=(VECTOR& left, VECTOR& right) {
-    return (left.module() != right.module());
+bool VECTOR::operator!=(VECTOR& right) {
+    return module() != right.module();
 }
 
 istream& operator>>(istream& in, VECTOR& vector) {

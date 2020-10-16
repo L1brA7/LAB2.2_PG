@@ -26,11 +26,11 @@ class COMPLEX {
         //z=z1⋅z2=(a1a2−b1b2)+(a1b2+b1a2)i
         COMPLEX operator*(COMPLEX& cn2);
         bool operator<(COMPLEX& right);
-        friend bool operator>(COMPLEX& left, COMPLEX& right);
-        friend bool operator==(COMPLEX& left, COMPLEX& right);
-        friend bool operator!=(COMPLEX& left, COMPLEX& right);
-        friend bool operator<=(COMPLEX& left, COMPLEX& right);
-        friend bool operator>=(COMPLEX& left, COMPLEX& right);
+        bool operator>(COMPLEX& right);
+        bool operator==(COMPLEX& right);
+        bool operator!=(COMPLEX& right);
+        bool operator<=(COMPLEX& right);
+        bool operator>=(COMPLEX& right);
         friend istream& operator>>(istream& in, COMPLEX& cn);
         friend ostream& operator<<(ostream& out, COMPLEX& cn);
 };
@@ -78,28 +78,28 @@ COMPLEX COMPLEX::operator*(COMPLEX& cn2) {
     return comp;
 }
 
-bool operator>(COMPLEX& left, COMPLEX& right) {
-    return left.module() > right.module();
-}
-
 bool COMPLEX::operator<(COMPLEX& right) {
     return module() < right.module();
 }
 
-bool operator==(COMPLEX& left, COMPLEX& right) {
-    return left.module() == right.module();
+bool COMPLEX::operator>(COMPLEX& right) {
+    return module() > right.module();
 }
 
-bool operator!=(COMPLEX& left, COMPLEX& right) {
-    return left.module() != right.module();
+bool COMPLEX::operator==(COMPLEX& right) {
+    return module() == right.module();
 }
 
-bool operator<=(COMPLEX& left, COMPLEX& right) {
-    return left.module() <= right.module();
+bool COMPLEX::operator!=(COMPLEX& right) {
+    return module() != right.module();
 }
 
-bool operator>=(COMPLEX& left, COMPLEX& right) {
-    return left.module() >= right.module();
+bool COMPLEX::operator<=(COMPLEX& right) {
+    return module() > right.module();
+}
+
+bool COMPLEX::operator>=(COMPLEX& right) {
+    return module() >= right.module();
 }
 
 istream& operator>>(istream& in, COMPLEX& cn) {
